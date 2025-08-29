@@ -1,5 +1,6 @@
 <table>
   <thread>
+    <img src="<%= image_path('/tests/HANNI.png') %>">
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -9,14 +10,6 @@
     </thread>
 
     <tbody>
-      <% @articles.each do |article| %>
-        <tr>
-            <td><%= article.id %></td>
-            <td><%= article.name %></td>
-            <td><%= article.body %></td>
-            <td><%= link_to 'Show', article_path(article.id) %></td>
-            <td><%= button_to 'Delete', delete_article_path(article.id), method: :delete %> </td>
-        </tr>
-      <% end %>
+      <%= render "article" %>
     </tbody>
 </table>
