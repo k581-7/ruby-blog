@@ -1,0 +1,18 @@
+<table>
+  <thread>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Body</th>
+        <th><%= link_to 'Edit', edit_article_path %> </th>
+      </tr>
+    </thread>
+
+    <tbody>
+        <tr>
+            <td><%= @article.id %></td>
+            <td><%= @article.name %></td>
+            <td><%= @article.body %></td>
+        </tr>
+    </tbody>
+</table>

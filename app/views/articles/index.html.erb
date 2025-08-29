@@ -4,6 +4,7 @@
         <th>ID</th>
         <th>Name</th>
         <th>Body</th>
+        <th><%= link_to 'New Article', new_article_path %> </th>
       </tr>
     </thread>
 
@@ -13,7 +14,9 @@
             <td><%= article.id %></td>
             <td><%= article.name %></td>
             <td><%= article.body %></td>
+            <td><%= link_to 'Show', article_path(article.id) %></td>
+            <td><%= button_to 'Delete', delete_article_path(article.id), method: :delete %> </td>
         </tr>
       <% end %>
     </tbody>
-<table>
+</table>
