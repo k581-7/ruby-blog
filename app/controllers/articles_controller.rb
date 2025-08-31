@@ -13,6 +13,7 @@ class ArticlesController < ApplicationController
 
     def create
          @article = Article.new(article_params)
+         @article.user = User.first || User.create(username: "user-#{SecureRandom.hex(10)}")
         # @article.name = params[:name]
         # @article.body = params[:body]
 

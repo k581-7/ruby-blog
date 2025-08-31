@@ -2,7 +2,7 @@
   <thread>
     <tr>
         <th>ID</th>
-        <th>Name</th>
+        <th>Title</th>
         <th>Body</th>
         <th><%= link_to 'Edit', edit_article_path %> </th>
       </tr>
@@ -16,4 +16,32 @@
         </tr>
     </tbody>
 </table>
+
+<p><strong>Author:</strong> <%= @article.user.username %></p>
+
+<hr>
+
+<h2>Comments</h2>
+<% if @article.comments.any? %>
+  <% @article.comments.each do |comment| %>
+  <div class="comment" style="margin-bottom: 10px; padding: 8px; border-bottom: 1px solid #ddd;">
+    <p><%= comment.body %></p>
+      <small> by <%= comment.user&.username %></small>
+      </div>
+  <% end %>
+<% else %>
+  <p>No comments yet.</p>
+<% end %>
+
+<h3>Add a comment:</h3>
+<%= form_with(model: [ @article, @article.comments.build ]) do |form| %>
+  <p>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit "Post Comment" %>
+  </p>
+<% end %>
+
+
 

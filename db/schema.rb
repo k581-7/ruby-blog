@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_26_144504) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_31_174647) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -19,15 +19,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_26_144504) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "post_id", null: false
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.bigint "article_id", null: false
+    t.index ["article_id"], name: "index_comments_on_article_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -41,12 +43,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_26_144504) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "comments", "posts"
+  add_foreign_key "articles", "users"
+  add_foreign_key "comments", "articles"
   add_foreign_key "comments", "users"
   add_foreign_key "posts", "users"
 end
