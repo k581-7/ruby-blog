@@ -18,22 +18,22 @@
 
 
 <hr>
+    
+<h2>Comments</h2>
+<% @comments.each do |comment| %>
+  <div class="comment">
+    <p><strong><%= comment.user&.username || "Anonymous" %></strong></p>
+    <p><%= comment.body %></p>
+  </div>
+<% end %>
 
-    <% @article.comments.each do |comment| %>
-      <tr> 
-        <div>
-        <td><%= comment.id %></td>
-        <td><%= comment.user&.username || "Anonymous" %></td>
-        <td><%= comment.body %></td>
-        </div>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <h3>Add a comment:</h3>
-<%= form_with(model: [ @article, @article.comments.build ]) do |form| %>
+ <%= form_with(model: [@article, Comment.new], local: true) do |form| %>
   <p>
+     <%= form.label :user_id, "Select User:" %>
+    <%= form.select :user_id, options_from_collection_for_select(User.all, :id, :username), { prompt: "Choose a user" } %>
+  </p>
     <%= form.text_area :body, rows: 3 %>
   </p>
   <p>
