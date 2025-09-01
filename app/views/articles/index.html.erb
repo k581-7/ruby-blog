@@ -1,15 +1,18 @@
 <table>
-  <thread>
-    <img src="<%= image_path('/tests/HANNI.png') %>">
+  <thead>
+    <img src="<%= image_path('/tests/HANNI.png')%>">
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Body</th>
-        <th><%= link_to 'New Article', new_article_path %> </th>
-      </tr>
-    </thread>
+      <th>Name</th>
+      <th>Body</th>
+      <th><%= link_to 'New Article', new_article_path %></th>
+    </tr>
+  </thead>
 
-    <tbody>
-      <%= render "article" %>
-    </tbody>
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <%= render "article", article: article %>
+      </tr>
+    <% end %>
+  </tbody>
 </table>

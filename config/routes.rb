@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  # get "home/index"
+  # get "users/index"
+  # get "users/show"
+  # get "users/new"
+  # get "users/edit"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -13,11 +18,21 @@ Rails.application.routes.draw do
   put "/articles/:id" => "articles#update"
   delete "/articles/:id" => "articles#delete", as: "delete_article"
 
-    resources :articles do
-    resources :comments, only: [:create]
-  end
+  # Users routes (new routes to add)
+  get "/users" => "users#index"
+  get "/users/new" => "users#new", as: "new_user"
+  post "/users" => "users#create", as: "create_user"
+  get "/users/:id" => "users#show", as: "user"
+  get "/users/:id/edit" => "users#edit", as: "edit_user"
+  patch "/users/:id" => "users#update"
+  put "/users/:id" => "users#update"
+  delete "/users/:id" => "users#destroy", as: "delete_user"
 
-  # resources :users
+    resources :articles do
+    resources :comments, only: [:create ]
+    
+  end
+  root "home#index"
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest

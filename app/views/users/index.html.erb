@@ -1,0 +1,15 @@
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Password</th>
+      <th><%= link_to 'Create User', new_user_path %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <%= render "users", users: @users %>
+      </tr>
+  </tbody>
+</table>

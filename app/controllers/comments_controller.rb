@@ -2,8 +2,7 @@ class CommentsController < ApplicationController
    def create
     @article = Article.find(params[:article_id])
     @comment = @article.comments.build(comment_params)
-
-    @comment.user = User.order("RANDOM()").first || User.create(username: "User#{rand(1000)}")
+    @comment.user ||= User.find_by(username: "Anonymous")
   
     if @comment.save
       redirect_to @article
