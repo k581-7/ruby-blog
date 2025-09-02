@@ -1,10 +1,27 @@
+<style>
+
+ * {
+  color: #820f17
+  background-color: #f5e9dc;
+}
+
+table {
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: center;
+}
+</style>
+
 <table>
   <thead>
-    <img src="<%= image_path('/tests/HANNI.png')%>">
+
     <tr>
-      <th>Name</th>
-      <th>Body</th>
-      <th><%= link_to 'New Article', new_article_path %></th>
+      <th>Title</th>
+      <th>Story Preview</th>
+      <th><%= link_to 'Create a Story', new_article_path %></th>
     </tr>
   </thead>
 

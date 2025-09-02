@@ -1,7 +1,18 @@
+<style>
+
+#storypreview {
+overflow: hidden;
+text-overflow: ellipsis;
+max-width: 75ch;
+white-space: nowrap;
+}
+
+</style>
+
 <tr>
     <td><%= article.name %></td>
-    <td><%= article.body %></td>
-    <td><%= link_to 'View', article_path(article.id) %></td>
+    <td id="storypreview"><%= article.body %></td>
+    <td><%= link_to 'Read', article_path(article.id) %></td>
     <td><%= link_to 'Edit', edit_article_path(article) %></td> 
     <td><%= button_to 'Delete', delete_article_path(article.id), method: :delete %> </td>
 </tr>

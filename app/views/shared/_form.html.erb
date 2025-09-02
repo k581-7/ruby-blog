@@ -1,12 +1,21 @@
+<style>
+* {
+  text-align: center;
+}
+
+</style>
+
+
+
 <p>
-  <%= f.label :name %> <br/>
+  <%= f.label :name, "Title" %> <br/>
   <%= f.text_field :name %>
 </p>
 <p>
-  <%= f.label :body %> <br/>
+  <%= f.label :body, "Story Content" %> <br/>
   <%= f.text_field :body %>
 </p>
 
 <p>
-  <%= f.submit %>
+  <%= f.submit "Publish"%>
 </p>

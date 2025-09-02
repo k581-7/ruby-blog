@@ -1,28 +1,55 @@
+<style>
+* {
+  text-align: center;
+}
+
+body {
+  text-align: center;
+}
+
+table {
+  margin: 0 auto;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+form {
+  display: inline-block;
+  text-align: left;
+  margin: 20px auto;
+}
+</style>
+
+
 <table>
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Body</th>
+      <th>Title</th>
     </tr>
   </thead>
 
   <tbody>
       <tr>
-        <td><%= @article.id %> </td>
         <td><%= @article.name %> </td>
-        <td><%= @article.body %> </td>
+        </tr>
+        <tr>
+          <td>
+            <p><strong>Written by:</strong> <%= @article.user.username %></p>
+            <strong>Story Content</strong>
+          </td>
+        </tr>
+        <tr>
+        <td><p><%= @article.body %> </p></td>
+        </tr>
       </tr>
   </tbody>
 </table>
 
-
-<hr>
     
 <h2>Comments</h2>
 <% @comments.each do |comment| %>
   <div class="comment">
-    <p><strong><%= comment.user&.username || "Anonymous" %></strong></p>
+    <p><strong><%= comment.user&.username %></strong></p>
     <p><%= comment.body %></p>
   </div>
 <% end %>
@@ -32,7 +59,7 @@
  <%= form_with(model: [@article, Comment.new], local: true) do |form| %>
   <p>
      <%= form.label :user_id, "Select User:" %>
-    <%= form.select :user_id, options_from_collection_for_select(User.all, :id, :username), { prompt: "Choose a user" } %>
+    <%= form.select :user_id, options_from_collection_for_select(User.all, :id, :username) %>
   </p>
     <%= form.text_area :body, rows: 3 %>
   </p>
